@@ -77,28 +77,6 @@ pip install -q snowflake-connector-python python-dotenv
 echo -e "${GREEN}Python environment ready${NC}"
 echo ""
 
-# Step 2: Run SQL scripts
-echo -e "${YELLOW}Step 2: Running SQL setup scripts...${NC}"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-for sql_file in 01_create_database.sql 02_create_iceberg_tables.sql 04_load_sample_data.sql 03_create_dynamic_tables.sql; do
-    if [ -f "$sql_file" ]; then
-        echo "  Running: $sql_file"
-        snow sql --connection="$SNOWFLAKE_CONNECTION" --filename="${SCRIPT_DIR}/${sql_file}"
-        if [ $? -ne 0 ]; then
-            echo -e "${RED}Error running $sql_file${NC}"
-            echo "You may need to run this file manually in Snowsight."
-        fi
-    fi
-done
-echo ""
-
-# Step 3: Upload JSON files
-echo -e "${YELLOW}Step 3: Uploading JSON maintenance log files...${NC}"
-snow sql --connection="$SNOWFLAKE_CONNECTION" --query="PUT file://${SCRIPT_DIR}/maintenance_log_*.json @${SNOWFLAKE_DATABASE}.RAW.LOGS_STAGE AUTO_COMPRESS=FALSE OVERWRITE=TRUE"
-echo -e "${GREEN}JSON files uploaded${NC}"
-echo ""
-
 # Step 4: Spark environment (optional)
 echo -e "${YELLOW}Step 4: Setting up Spark environment (optional)...${NC}"
 if command -v conda &> /dev/null; then

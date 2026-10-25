@@ -1,4 +1,6 @@
-author: Gilberto Hernandez, Scott Teal
+original author: Gilberto Hernandez, Scott Teal
+Modified by: Alex Barron
+
 id: get-started-snowflake-managed-iceberg-tables
 categories: snowflake-site:taxonomy/solution-center/certification/quickstart, snowflake-site:taxonomy/product/data-engineering, snowflake-site:taxonomy/product/platform, snowflake-site:taxonomy/snowflake-feature/apache-iceberg, snowflake-site:taxonomy/snowflake-feature/lakehouse-analytics, snowflake-site:taxonomy/snowflake-feature/ingestion, snowflake-site:taxonomy/snowflake-feature/interoperable-storage
 language: en
@@ -95,14 +97,6 @@ chmod +x setup.sh
 ```
 
 Here's what the setup script does:
-
-- Creates a database called **FLEET_DB** with two schemas: **RAW** and **ANALYTICS**
-- Creates a warehouse called **FLEET_WH**
-- Sets the database default external volume to `SNOWFLAKE_MANAGED`
-- Creates Snowflake-managed Iceberg tables for vehicle telemetry, sensor readings, vehicle registry, and maintenance logs
-- Creates Dynamic Iceberg Tables for transformation pipelines
-- Loads sample data into the vehicle registry and sensor readings tables
-- Uploads JSON maintenance log files to an internal stage
 - Sets up a Python virtual environment for the streaming script
 
 ### Verify Setup

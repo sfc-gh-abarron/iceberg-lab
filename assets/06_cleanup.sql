@@ -1,5 +1,5 @@
 -- Get Started with Snowflake-Managed Iceberg Tables
--- Script 05: Clean Up
+-- Script 06: Clean Up
 -- ============================================
 
 USE ROLE ACCOUNTADMIN;
